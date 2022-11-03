@@ -28,7 +28,7 @@ public class PatientProxy {
 	 * @return List of all Patients
 	 */
 	public List<Patient> getPatients() {
-		String apiUrl = props.getApiPatient()+"/patients";
+		String apiUrl = props.getApiPatient();
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<List<Patient>> response = restTemplate.exchange(
 				apiUrl,
@@ -48,7 +48,7 @@ public class PatientProxy {
 	 * @return The Patient
 	 */
 	public Patient getPatient(int id) {
-		String apiUrl = props.getApiPatient()+"/patients";
+		String apiUrl = props.getApiPatient();
 		String getPatientUrl = apiUrl + "/" + id;
 
 		RestTemplate restTemplate = new RestTemplate();
@@ -70,7 +70,7 @@ public class PatientProxy {
 	 * @return The Patient full filled (with an id)
 	 */
 	public Patient createPatient(Patient patient) {
-		String apiUrl = props.getApiPatient()+"/patients";
+		String apiUrl = props.getApiPatient();
 		
 		RestTemplate restTemplate = new RestTemplate();
 		HttpEntity<Patient> request = new HttpEntity<Patient>(patient);
@@ -90,7 +90,7 @@ public class PatientProxy {
 	 * @param patient Existing patient to update
 	 */
 	public Patient updatePatient(Patient patient) {
-		String apiUrl = props.getApiPatient()+"/patients";
+		String apiUrl = props.getApiPatient();
 		String updatePatientUrl = apiUrl + "/" + patient.getPatientId();
 
 		RestTemplate restTemplate = new RestTemplate();
@@ -111,7 +111,7 @@ public class PatientProxy {
 	 * @param id The patient's id to delete
 	 */
 	public void deletePatient(int id) {
-		String apiUrl = props.getApiPatient()+"/patients";
+		String apiUrl = props.getApiPatient();
 		String deletePatientUrl = apiUrl + "/" + id;
 		
 		RestTemplate restTemplate = new RestTemplate();

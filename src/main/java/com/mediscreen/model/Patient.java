@@ -1,14 +1,17 @@
 package com.mediscreen.model;
 
 import java.sql.Date;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Patient {
+	
 	
 	private Integer patientId;
 	private String familyName;
 	private String firstName;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthdate;
 	private String gender;
@@ -52,10 +55,12 @@ public class Patient {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
+	
 	public Date getBirthdate() {
 		return birthdate;
 	}
+	
+
 
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;

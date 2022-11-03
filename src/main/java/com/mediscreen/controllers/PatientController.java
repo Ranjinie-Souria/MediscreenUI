@@ -1,11 +1,11 @@
 package com.mediscreen.controllers;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,7 +29,10 @@ public class PatientController {
 	
 	@GetMapping("/patients/add")
 	public ModelAndView createPatient(Patient patient) {
-		return new ModelAndView("/patients/add");
+		ModelAndView mv = new ModelAndView("/patients/add");
+		Patient p = new Patient();
+		mv.addObject("patient", p);
+		return mv;
 	}
 	
 	@GetMapping("/patients/update/{id}")
@@ -47,8 +50,8 @@ public class PatientController {
 	}
 	
 	@PostMapping("/savePatient")
-	public ModelAndView savePatient(@ModelAttribute Patient patient) {
-		service.savePatient(patient);
+	public ModelAndView savePatient(Integer patientId,String familyName,String firstName,Date birthdate,String gender,String address,String phone) {
+		service.savePatient(new Patient(patientId,familyName,firstName,birthdate,gender,address,phone));
 		return new ModelAndView("redirect:/patients");	
 	}
 
