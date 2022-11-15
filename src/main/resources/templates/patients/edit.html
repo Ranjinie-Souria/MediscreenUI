@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:th="http://www.thymeleaf.org">
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8"/>
-<title>Patients</title>
+<title>Mediscreen</title>
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/css.css}" rel="stylesheet" />
 </head>
 <body>
+
+  <nav class="navbar navbar-expand-lg navbar-light navi">
+  <a class="navbar-brand navTitre" href="/">Mediscreen</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/">Home </a>
+      <a class="nav-item nav-link" href="/patients">Patients<span class="sr-only">(current)</span></a>
+    </div>
+  </div>
+</nav>
 <div class="container">
 
 	<div class="row">
-		<h2>Add New Patient</h2>
-	</div>
-
-	<div class="row">
+	<h2>Edit Patient</h2>
 		<form name="add" action="#" th:action="@{/savePatient}" th:object="${patient}" method="post" class="form-horizontal" style="width: 100%">
 			<div class="form-group">
 				<label for="patientId" class="col-sm-2 control-label">Family Name</label>
@@ -68,7 +80,7 @@
 			<div class="form-group">
 				<div class="col-sm-12">
 					<a class="btn btn-danger btn-sm" href="/patients/">Cancel</a>
-					<input class="btn btn-primary btn-sm" type="submit" value="Edit Patient">
+					<input class="btn btn-primary btn-sm bouton" type="submit" value="Edit Patient">
 				</div>
 			</div>
 		</form>

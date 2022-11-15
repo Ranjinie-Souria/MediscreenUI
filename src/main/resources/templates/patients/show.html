@@ -25,14 +25,28 @@
 
 <div class="container">
 	<br><br>
-	<div class="mainBox">
+	<div class="mainBox" style="text-align:center;">
 	
-	<h1 class="titre">Welcome to Mediscreen !</h1>
+	<h1 class="titre" th:text="${name}"></h1><br><br>
 	
-	Click on the navigation bar to check your patients.
+	<div class="mainBox" style="border: 2px dotted #5dc4bd;width:30%;margin-left: auto;">
+	<h2 class="titre">Basic Information</h2>
+	<div class="infoLabel">Family Name : </div><p th:text="${patient.familyName}"></p>
+	<div class="infoLabel">First Name : </div><p th:text="${patient.firstName}"></p>
+	<div class="infoLabel">Birthdate : </div><p th:text="${patient.birthdate}"></p>
+	<div class="infoLabel">Gender : </div><p th:text="${patient.gender}"></p>
+	<div class="infoLabel">Address : </div><p th:text="${patient.address}"></p>
+	<div class="infoLabel">Phone Number : </div><p th:text="${patient.phone}"></p>
+	</div>
 	
-	<br><br>	
-	<a href="/patients/add" class="btn btn-primary btn-sm bouton">Add a new Patient</a>
+	<br><h1 class="titre">Notes</h1><br>
+	
+	<div th:each="note : ${notes}" class="noteBox">
+	<h2 class="titre" th:text="${note.date}">Date</h2>
+	<div class="infoLabel" style="width:20%">Note : </div><br>
+	<p  th:text="${note.content}"></p>
+	</div>
+	
 	</div>
 </div>
 </body>
