@@ -1,10 +1,10 @@
 package com.mediscreen.controllers;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,18 +31,10 @@ public class NoteController {
 		return mv;
 	}
 	
-	@GetMapping("/notes/add")
-	public ModelAndView createPatient(Patient patient) {
-		ModelAndView mv = new ModelAndView("/patients/add");
-		Patient p = new Patient();
-		mv.addObject("patient", p);
-		return mv;
-	}
-	
 	@GetMapping("/notes/update/{id}")
 	public ModelAndView updateEmployee(@PathVariable int id) {
 		ModelAndView mv = new ModelAndView("/patients/edit");
-		Patient patient = service.getPatient(id);		
+		Patient patient = service.getPatient(id);	
 		mv.addObject("patient", patient);	
 		return mv;		
 	}
@@ -53,10 +45,19 @@ public class NoteController {
 		return new ModelAndView("redirect:/patients");		
 	}
 	
+	@GetMapping("/notes/add/{idPatient}")
+	public ModelAndView createNote(@PathVariable Integer idPatient, Model model) {
+		ModelAndView mv = new ModelAndView("/notes/add");
+		Note note = new Note();
+		note.setPatient(idPatient);
+		mv.addObject("note", note);
+		return mv;
+	}
+	
 	@PostMapping("/saveNote")
-	public ModelAndView savePatient(Integer patientId,String familyName,String firstName,Date birthdate,String gender,String address,String phone) {
-		service.savePatient(new Patient(patientId,familyName,firstName,birthdate,gender,address,phone));
-		return new ModelAndView("redirect:/patients");	
+	public ModelAndView saveNote(String content, Integer patient) {
+		nservice.saveNote(new Note(content,patient));
+		return new ModelAndView("redirect:/patients/"+patient);	
 	}
 
 }

@@ -39,8 +39,10 @@
 	<div class="infoLabel">Phone Number : </div><p th:text="${patient.phone}"></p>
 	</div>
 	
-	<br><h1 class="titre">Notes</h1><br>
-	
+	<br><h1 class="titre">Notes</h1>
+	<br>	
+	<a th:href="@{/notes/add/{id}(id=${patient.patientId})}" class="btn btn-primary btn-sm bouton">Create note</a><br>
+	<br>
 	<div th:each="note : ${notes}" class="noteBox">
 	<h2 class="titre" th:text="${note.date}">Date</h2>
 	<div class="infoLabel" style="width:20%">Note : </div><br>
