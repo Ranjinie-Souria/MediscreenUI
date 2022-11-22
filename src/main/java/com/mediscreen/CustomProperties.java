@@ -10,15 +10,7 @@ public class CustomProperties {
     private String apiPatient;
     private String apiAssignement;
     private String apiNote;
-    private String keyApiNote;
-    
-    
-	public String getKeyApiNote() {
-		return keyApiNote;
-	}
-	public void setKeyApiNote(String keyApiNote) {
-		this.keyApiNote = keyApiNote;
-	}
+
 	public String getApiPatient() {
 		return apiPatient;
 	}

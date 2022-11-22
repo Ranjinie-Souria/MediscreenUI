@@ -129,9 +129,9 @@ public class NoteProxy {
 	 * Delete a note
 	 * @param id The note id to delete
 	 */
-	public void deleteNote(int id) {
+	public void deleteNote(String id) {
 		String apiUrl = props.getApiNote();
-		String deleteNoteUrl = apiUrl + "/" + id;
+		String deleteNoteUrl = apiUrl + "/delete/" + id;
 		
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<Void> response = restTemplate.exchange(

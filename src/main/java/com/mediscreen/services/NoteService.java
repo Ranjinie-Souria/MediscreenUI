@@ -36,7 +36,7 @@ public class NoteService {
         return savedNote;
 	}
 	
-	public void deleteNote(int id) {
+	public void deleteNote(String id) {
 		proxy.deleteNote(id);
 	}
 	

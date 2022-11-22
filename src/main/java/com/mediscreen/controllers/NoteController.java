@@ -32,17 +32,17 @@ public class NoteController {
 	}
 	
 	@GetMapping("/notes/update/{id}")
-	public ModelAndView updateEmployee(@PathVariable int id) {
+	public ModelAndView updateNote(@PathVariable int id) {
 		ModelAndView mv = new ModelAndView("/patients/edit");
 		Patient patient = service.getPatient(id);	
 		mv.addObject("patient", patient);	
 		return mv;		
 	}
 	
-	@GetMapping("/notes/delete/{id}")
-	public ModelAndView deleteEmployee(@PathVariable int id) {
-		service.deletePatient(id);
-		return new ModelAndView("redirect:/patients");		
+	@GetMapping("/notes/delete/{id}/{idPatient}")
+	public ModelAndView deleteNote(@PathVariable Integer idPatient,@PathVariable String id) {
+		nservice.deleteNote(id);
+		return new ModelAndView("redirect:/patients/"+idPatient+"?noteDeleted");		
 	}
 	
 	@GetMapping("/notes/add/{idPatient}")
@@ -57,7 +57,7 @@ public class NoteController {
 	@PostMapping("/saveNote")
 	public ModelAndView saveNote(String content, Integer patient) {
 		nservice.saveNote(new Note(content,patient));
-		return new ModelAndView("redirect:/patients/"+patient);	
+		return new ModelAndView("redirect:/patients/"+patient+"?noteAdded");	
 	}
 
 }
