@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mediscreen.model.Assessment;
 import com.mediscreen.model.Note;
 import com.mediscreen.model.Patient;
+import com.mediscreen.services.AssessmentService;
 import com.mediscreen.services.NoteService;
 import com.mediscreen.services.PatientService;
 
@@ -23,6 +25,11 @@ public class PatientController {
 	
 	@Autowired
 	NoteService noteService;
+	
+	@Autowired
+	AssessmentService assessService;
+	
+	
 	
 	@GetMapping("/patients")
 	public ModelAndView home() {
@@ -36,10 +43,16 @@ public class PatientController {
 	public ModelAndView showOne(@PathVariable int id) {
 		ModelAndView mv = new ModelAndView("/patients/show");
 		Patient patient = service.getPatient(id);
-		List<Note> notes = noteService.getNotesForPatient(id);
+		List<Note> notes = noteService.getNotesForPatient(id);	
+		Assessment assess = assessService.getAssessment(id);
+		String assessment = "Patient: "+patient.getFirstName()+" "+patient.getFamilyName()+
+				" (age "+assess.getPatientAge()+
+				") diabetes assessment is: "+assess.getResult();
+		
 		mv.addObject("patient", patient);
 		mv.addObject("name", patient.getFirstName()+" "+patient.getFamilyName());
 		mv.addObject("notes", notes);
+		mv.addObject("assessment", assessment);
 		return mv;		
 	}
 	

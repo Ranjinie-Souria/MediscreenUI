@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class CustomProperties {
 
     private String apiPatient;
-    private String apiAssignement;
+    private String apiAssessment;
     private String apiNote;
 
 	public String getApiPatient() {
@@ -17,20 +17,20 @@ public class CustomProperties {
 	public void setApiPatient(String apiPatient) {
 		this.apiPatient = apiPatient;
 	}
-	public String getApiAssignement() {
-		return apiAssignement;
-	}
-	public void setApiAssignement(String apiAssignement) {
-		this.apiAssignement = apiAssignement;
-	}
 	public String getApiNote() {
 		return apiNote;
 	}
 	public void setApiNote(String apiNote) {
 		this.apiNote = apiNote;
 	}
-
-
+	public String getApiAssessment() {
+		return apiAssessment;
+	}
+	public void setApiAssessment(String apiAssessment) {
+		this.apiAssessment = apiAssessment;
+	}
+	
+	
     
     
     
